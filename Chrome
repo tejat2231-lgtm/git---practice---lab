@@ -1,0 +1,27 @@
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.edge.service import Service
+import time
+
+service = Service("C:\\msedgedriver.exe")
+driver = webdriver.Edge(service=service)
+
+driver.get("https://www.facebook.com/")
+time.sleep(3)
+
+email = driver.find_element(By.ID, "email")
+password = driver.find_element(By.ID, "pass")
+login = driver.find_element(By.NAME, "login")
+
+email.send_keys("your_email@example.com")
+password.send_keys("your_password")
+login.click()
+
+time.sleep(5)
+
+if "facebook.com" in driver.current_url:
+    print("Login Successful")
+else:
+    print("Login Failed")
+
+driver.quit()
